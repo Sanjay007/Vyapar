@@ -1,0 +1,149 @@
+
+entity Party {
+	partyName String,
+    partyEmail String,
+    phoneNumber Integer,
+    gstin Integer,
+    state String,
+    group String,
+    gstType GstType,
+    openingBalance BigDecimal,
+    openingBalDate LocalDate
+    reciveOrPay ReceivePay
+}
+entity Items {
+	itemName String,
+    itemType ItemType,
+    units UnitsEnum,
+    itemnCode String,
+    hsn String,
+    taxRates TaxRate ,
+    description TextBlob ,
+    salePrice BigDecimal,
+    saleTaxType TaxType,
+    buyPrice BigDecimal,
+    buyTaxType TaxType,
+    discountType DiscountType ,
+    discountValue String 
+    
+       
+}
+
+entity OpeningBalance{
+	openingbalQty Integer ,
+    openingbalRate BigDecimal,
+    openingbalTaxType TaxType
+}
+
+enum DiscountType{
+NO,AMOUNT,PERCENTAGE 
+}
+
+entity ItemsPhoto{
+imageLink String ,
+imageType String,
+data Blob
+
+}
+enum TaxType{
+TAX_EXCLUDED,TAX_INCLUDED
+}
+enum TaxRate{
+ONE,TWO,THREE
+}
+entity CategoryItems{
+categoryName String
+}
+
+enum ItemType{
+GOODS,SERVICES
+}
+enum UnitsEnum{
+Kgs,BOX,CAN,CTN
+}
+entity Address {
+	streetAddress TextBlob,
+	postalCode String,
+	city String,
+	stateProvince String
+}
+
+entity BankInfo{
+bankName String,
+IfscCOde String,
+upiId String,
+accountNumber String,
+isPrimary Boolean
+}
+
+entity Invoice {
+invoiceNumber String ,
+invoiceDate LocalDate ,
+invoiceDueOn LocalDate,
+paymentTerms PaymentTerms
+
+}
+
+entity PaymentDetails {
+paymentMode PaymentMode,
+transactionID String 
+}
+
+entity PaymentDocument {
+title String ,
+docsize Long ,
+mimeType String,
+data Blob
+}
+
+enum PaymentMode{
+ONLINE,NETBANKING,CASH,CHEQUE
+}
+entity AmountDetails{
+invoiceAmount BigDecimal,
+received Boolean ,
+receivedAmount BigDecimal,
+linkedInvoice String ,
+balanceAmount BigDecimal 
+}
+
+
+enum PaymentTerms{
+WEEKLY,MONTHLY,CUSTOM
+}
+relationship OneToOne {
+	Invoice{paymentDetails} to PaymentDetails
+	Party{billing(streetAddress)} to Address
+    Party{shippingAddress(streetAddress)} to Address
+    Items{openingBalance} to OpeningBalance
+    Invoice{invoiceParty} to Party
+    PaymentDetails{paymentDocument} to PaymentDocument{paymentDetails(id)}
+	Invoice{amountDetails} to AmountDetails
+    
+}
+
+relationship OneToMany {
+	Party{bankInfo(bankName)} to BankInfo ,
+    Items{CategoryItems(categoryName)} to CategoryItems ,
+    Items{photo} to ItemsPhoto
+   
+}
+
+relationship ManyToMany{
+  Invoice{items} to Items{invoice}
+}
+
+enum GstType{
+UNREGISTERED,REGISTERED,COMPOSITE
+}
+enum ReceivePay{
+TO_PAY,TO_RECEIVE
+}
+
+dto all with mapstruct
+
+service all with serviceImpl
+paginate all with pagination
+filter * except PaymentDetails , PaymentDocument , BankInfo ,AmountDetails ,Address
+elasticsearch *
+
