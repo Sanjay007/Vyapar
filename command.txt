@@ -1,0 +1,98 @@
+    1  ls
+    2  clear
+    3  sudo apt update
+    4  sudo apt install apache2
+    5  sudo ufw allow "Apache Full"
+    6  sudo apt install php php-curl php-bcmath php-json php-mbstring php-xml php-tokenizer php-zip
+    7  sudo apt-get install libapache2-mod-php8.1
+    8  sudo vi /etc/php/8.1/apache2/php.ini
+    9  php --version
+   10  sudo systemctl restart apache2
+   11  sudo apt install php8.1-common
+   12  cd /var/www/html/
+   13  ls
+   14  mv index.html inc.old
+   15  sudo mv index.html inc.old
+   16  sudo vi index.php
+   17  sudo apt install php-mysql
+   18  sudo apt-get install php8.1-mysql
+   19  sudo systemctl restart apache2
+   20  sudo apt install php8.1 php8.1-cli php8.1-common php8.1-mbstring php8.1-gd php8.1-intl php8.1-xml php8.1-mysql php8.1-zip php8.1-xsl php8.1-curl
+   21  sudo apt-get install mysql-server
+   22  sudo mysql_secure_installation
+   23  sudo mysql
+   24  sudo mysql -u root
+   25  sudo mysql -u
+   26  sudo mysql -u root
+   27  sudo mysql
+   28  sudo mysql -u root -p
+   29  clear
+   30  ls
+   31  cd ~
+   32  git clone https://github.com/Sanjay007/Vyapar.git
+   33  ls
+   34  cd Vyapar/
+   35  ls
+   36  sudo cp septserver.zip /var/www/html/
+   37  cd /var/ww/html
+   38  cd /var/www/html
+   39  ls
+   40  yum install unzip
+   41  sudo apt-get  install unzip
+   42  mkdir safar
+   43  sudo mkdir safar
+   44  cd safar/
+   45  cd ..
+   46  cp septserver.zip safar/
+   47  sudo cp septserver.zip safar/
+   48  cd safar/
+   49  unzip septserver.zip 
+   50  sudo unzip septserver.zip 
+   51  composer install
+   52  cd ..
+   53  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+   54  sudo php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+   55  sudo chmod 777 -R safar/
+   56  sudo php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+   57  php composer-setup.php
+   58  sudo php composer-setup.php
+   59  sudo php -r "unlink('composer-setup.php');"
+   60  sudo mv composer.phar /usr/local/bin/composer
+   61  cd safar/
+   62  composer install
+   63  vi .env
+   64  sudo vi .env
+   65  sudo composer install
+   66  php artisan key:generate 
+   67  php artisan migrate --seed 
+   68  sudo mysql -u root
+   69  sudo mysql -u root -p
+   70  sudo vi .env
+   71  php artisan migrate --seed 
+   72  clear
+   73  sudo chgrp -R www-data storage bootstrap/cache public 
+   74  sudo chmod 777 -R bootstrap/
+   75  sudo chmod 777 -R public/
+   76  sudo chmod -R ug+rwx storage bootstrap/cache public
+   77  php artisan storage:link 
+   78  clear
+   79  sudo vi /etc/apache2/sites-available/000-default.conf
+   80  ls
+   81  sudo systemctl restart apache2
+   82  sudo vi /etc/apache2/sites-available/000-default.conf
+   83  sudo systemctl restart apache2
+   84  ls /etc/apache2/apache2.conf
+   85  vi /etc/apache2/apache2.conf
+   86  sudo vi /etc/apache2/apache2.conf
+   87  sudo systemctl restart apache2
+   88  sudo vi /etc/apache2/sites-available/000-default.conf
+   89  sudo systemctl restart apache2
+   90  php artisan route:list
+   91  php artisan config:clear
+   92  php artisan route:clear
+   93  php artisan view:clear
+   94  php artisan cache:clear
+   95  sudo a2enmod rewrite
+   96  sudo systemctl restart apache2
+   97  history
+   98  history > command.txt
