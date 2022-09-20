@@ -96,3 +96,4 @@
    96  sudo systemctl restart apache2
    97  history
    98  history > command.txt
+   https://studysection.com/blog/all-routes-except-main-give-404-not-found-laravel/
